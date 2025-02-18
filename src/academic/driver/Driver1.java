@@ -1,4 +1,5 @@
-package academic.driver; 
+package academic.driver;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Driver1 {
         List<Student> students = new ArrayList<>();
         List<Enrollments> enrollments = new ArrayList<>();
 
+        // Loop to process input until "---" is entered
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine().trim();
             if (input.equals("---")) {
@@ -53,14 +55,21 @@ public class Driver1 {
                     break;
             }
         }
-        Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
 
+        // Sort courses, students, and enrollments if needed
+        Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
+        Collections.sort(students, (student1, student2) -> student1.getId().compareTo(student2.getId()));
+        Collections.sort(enrollments, (enrollment1, enrollment2) -> enrollment1.getId().compareTo(enrollment2.getId()));
+
+        // Output courses, students, and enrollments
         for (Course course : courses) {
             System.out.println(course);
         }
+
         for (Student student : students) {
             System.out.println(student);
         }
+
         for (Enrollments enrollment : enrollments) {
             System.out.println(enrollment);
         }
