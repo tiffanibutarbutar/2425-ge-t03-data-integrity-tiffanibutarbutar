@@ -1,5 +1,6 @@
 package academic.driver; 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import academic.model.Course;
@@ -52,8 +53,10 @@ public class Driver1 {
                     break;
             }
         }
+        Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
+        // Menggunakan forEach untuk mencetak kursus setelah diurutkan
+        courses.forEach(course -> System.out.println(course));
 
-        // Directly print in the order of insertion
         for (Course course : courses) {
             System.out.println(course);
         }
