@@ -1,15 +1,97 @@
 package academic.driver;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+import academic.model.Course;
+import academic.model.Student;
+import academic.model.Enrollments;
+
 /**
- * @author NIM Nama
- * @author NIM Nama
+ * @author 12S23001-Kevin Gultom
+ * @author 12S23010-Tiffani Butar-butar
  */
+
 public class Driver2 {
 
     public static void main(String[] _args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Course> courses = new ArrayList<>();
+        List<Student> students = new ArrayList<>();
+        List<Enrollments> enrollments = new ArrayList<>();
 
-        // codes
+        // Loop to process input until "---" is entered
+        while (scanner.hasNextLine()) {
+            String input = scanner.nextLine().trim();
+            if (input.equals("---")) {
+                break;
+            }
 
+            String[] parts = input.split("#");
+            if (parts.length < 2) {
+                continue;
+            }
+
+            String command = parts[0];
+
+            switch (command) {
+                case "course-add":
+                    if (parts.length == 5) {
+                        courses.add(new Course(parts[1], parts[2], Integer.parseInt(parts[3]), parts[4]));
+                    }
+                    break;
+                case "student-add":
+                    if (parts.length == 5) {
+                        students.add(new Student(parts[1], parts[2], Integer.parseInt(parts[3]), parts[4]));
+                    }
+                    break;
+                case "enrollment-add":
+                    if (parts.length == 5) {
+                        String studentId = parts[1];
+                        String courseId = parts[2];
+
+                        // Validate if Course exists
+                        boolean courseExists = courses.stream().anyMatch(course -> course.getCode().equals(courseId));
+                        if (!courseExists) {
+                            System.out.println("invalid course|" + courseId);
+                        }
+
+                        // Validate if Student exists
+                        boolean studentExists = students.stream().anyMatch(student -> student.getId().equals(studentId));
+                        if (!studentExists) {
+                            System.out.println("invalid student|" + studentId);
+                        }
+
+                        // Proceed with enrollment if both are valid
+                        if (courseExists && studentExists) {
+                            enrollments.add(new Enrollments(studentId, courseId, parts[3], parts[4], "None"));
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Sort courses, students, and enrollments if needed
+        Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
+        Collections.sort(students, (student1, student2) -> student1.getId().compareTo(student2.getId()));
+        Collections.sort(enrollments, (enrollment1, enrollment2) -> enrollment1.getId().compareTo(enrollment2.getId()));
+
+        // Output courses, students, and enrollments
+        for (Course course : courses) {
+            System.out.println(course.getCode() + "|" + course.getName() + "|" + course.getCredit() + "|" + course.getGrade());
+        }
+
+        for (Student student : students) {
+            System.out.println(student.getId() + "|" + student.getName() + "|" + student.getYear() + "|" + student.getMajor());
+        }
+
+        for (Enrollments enrollment : enrollments) {
+            System.out.println(enrollment.getId() + "|" + enrollment.getNim() + "|" + enrollment.getYear() + "|" + enrollment.getSubject() + "|" + enrollment.getNone());
+        }
+
+        scanner.close();
     }
-
 }
