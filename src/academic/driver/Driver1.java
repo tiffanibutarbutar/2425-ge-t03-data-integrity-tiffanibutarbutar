@@ -1,5 +1,4 @@
-package academic.driver;
-
+package academic.driver; 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +10,9 @@ import academic.model.Enrollments;
  * @author 12S23001-Kevin Gultom
  * @author 12S23010-Tiffani Butar-butar
  */
+
 public class Driver1 {
+
     public static void main(String[] _args) {
         Scanner scanner = new Scanner(System.in);
         List<Course> courses = new ArrayList<>();
@@ -30,7 +31,7 @@ public class Driver1 {
             }
 
             String command = parts[0];
-            
+
             switch (command) {
                 case "course-add":
                     if (parts.length == 5) {
@@ -52,6 +53,7 @@ public class Driver1 {
             }
         }
 
+        // Directly print in the order of insertion
         for (Course course : courses) {
             System.out.println(course);
         }
