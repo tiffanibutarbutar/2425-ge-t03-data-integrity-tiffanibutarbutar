@@ -54,8 +54,6 @@ public class Driver1 {
             }
         }
         Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
-        // Menggunakan forEach untuk mencetak kursus setelah diurutkan
-        courses.forEach(course -> System.out.println(course));
 
         for (Course course : courses) {
             System.out.println(course);
