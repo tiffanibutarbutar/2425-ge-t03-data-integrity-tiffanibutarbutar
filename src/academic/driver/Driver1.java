@@ -58,8 +58,6 @@ public class Driver1 {
 
         // Sort courses, students, and enrollments if needed
         Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
-        Collections.sort(students, (student1, student2) -> student1.getId().compareTo(student2.getId()));
-        Collections.sort(enrollments, (enrollment1, enrollment2) -> enrollment1.getId().compareTo(enrollment2.getId()));
 
         // Output courses, students, and enrollments
         for (Course course : courses) {
