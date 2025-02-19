@@ -1,48 +1,54 @@
 package academic.model;
-
 /**
  * @author 12S23001-Kevin Gultom
  * @author 12S23010-Tiffani Butar-butar
  */
 public class Student {
-    private final String id;
-    private String name;
-    private final int year;
-    private String major;
 
-    public Student(String id, String name, int year, String major) {
-        this.id = id;
-        this.name = name;
-        this.year = year;
-        this.major = major;
-    }
-
-    public String getId() {
+    // class definition
+        private String id;
+        private String name;
+        private int tahun;
+        private String  prodi;
+    
+        public Student(String id, String name, int tahun, String prodi) {
+            this.id = id;
+            this.name = name;
+            this.tahun = tahun;
+            this.prodi = prodi;
+        }
+        //getter
+        public String getId() {
         return id;
-    }
-
-    public String getName() {
+        }
+        public String getName() {
         return name;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setName(String name) {
+        }
+        public int getTahun() {
+        return tahun;
+        }
+        public String getProdi() {
+        return prodi;
+        }
+        //setter
+        public void setId(String id) {
+        this.id = id;
+        }
+        public void setName(String name) {
         this.name = name;
+        }
+        public void setTahun(int tahun) {
+        this.tahun = tahun;
+        }
+        public void setProdi(String prodi) {
+        this.prodi = prodi;
+        }
+        
+    
+        @Override 
+        public String toString(){
+            return id + "|" + name + "|" + tahun + "|" + prodi;
+        }
+    
     }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
-    @Override
-    public String toString() {
-        return id + "|" + name + "|" + year + "|" + major;
-    }
-}
+        

@@ -1,7 +1,6 @@
 package academic.driver;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import academic.model.Course;
@@ -12,7 +11,6 @@ import academic.model.Enrollments;
  * @author 12S23001-Kevin Gultom
  * @author 12S23010-Tiffani Butar-butar
  */
-
 public class Driver1 {
 
     public static void main(String[] _args) {
@@ -21,7 +19,6 @@ public class Driver1 {
         List<Student> students = new ArrayList<>();
         List<Enrollments> enrollments = new ArrayList<>();
 
-        // Loop to process input until "---" is entered
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine().trim();
             if (input.equals("---")) {
@@ -34,7 +31,7 @@ public class Driver1 {
             }
 
             String command = parts[0];
-
+            
             switch (command) {
                 case "course-add":
                     if (parts.length == 5) {
@@ -56,20 +53,18 @@ public class Driver1 {
             }
         }
 
-        // Sort courses, students, and enrollments if needed
-        Collections.sort(courses, (course1, course2) -> course1.getCode().compareTo(course2.getCode()));
+        courses.sort((course1, course2) -> course1.getId().compareTo(course2.getId()));
 
-        // Output courses, students, and enrollments
-        for (Course course : courses) {
-            System.out.println(course);
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.println(courses.get(i));
         }
 
-        for (Student student : students) {
-            System.out.println(student);
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println(students.get(i));
         }
 
-        for (Enrollments enrollment : enrollments) {
-            System.out.println(enrollment);
+        for (int i = 0; i < enrollments.size(); i++) {
+            System.out.println(enrollments.get(i));
         }
 
         scanner.close();
