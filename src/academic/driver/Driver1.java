@@ -51,7 +51,7 @@ public class Driver1 {
                 default:
                     break;
             }
-        }
+        } 
 
         courses.sort((course1, course2) -> course1.getId().compareTo(course2.getId()));
 
